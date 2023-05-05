@@ -50,6 +50,12 @@ from yolo_cam.eigen_cam import EigenCAM
 from yolo_cam.utils.image import show_cam_on_image, scale_cam_image
 ```
 
+#### Define your model and Set your target layers ( I recommend you use layers [-2] or[-4] for inference):
+
+```python
+target_layers =[model.model.model[-4]]
+```
+
 #### Call the function and print the image
 
 ```python
