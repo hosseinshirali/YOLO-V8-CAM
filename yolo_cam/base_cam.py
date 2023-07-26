@@ -79,7 +79,13 @@ class BaseCAM:
             if self.task == 'od':
                 target_categories = outputs[0].boxes.cls
             elif self.task == 'cls':
-                target_categories = [np.argmax(outputs[0].probs.cpu().numpy())]
+                # target_categories = [np.argmax(outputs[0].probs.cpu().numpy())]
+                # Get the predicted class by finding the index of the maximum value in the 
+                # probability tensor. The 'data' attribute is used because 'probs' is an 
+                # instance of the 'Probs' class from the 'ultralytics' package, and the actual 
+                # tensor is stored in the 'data' attribute.
+                target_categories = [np.argmax(outputs[0].probs.data.cpu().numpy())]
+
             else:
                 print('not ok')
             targets = [ClassifierOutputTarget(
